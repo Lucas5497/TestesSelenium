@@ -62,13 +62,11 @@ public class TesteCampoTreinamento {
 		ChromeDriver driver = new ChromeDriver(co);
 		driver.get("https://wcaquino.me/selenium/componentes.html");
 		
-		
 		//interagindo com o checkBox
 		driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
 		
 		//verificando se o botão está selecionado verifica se o resultado é true
 		Assert.assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:0")).isSelected());
-		
 		driver.quit();
 	
 	}
