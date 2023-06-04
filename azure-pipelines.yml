@@ -8,6 +8,7 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+  parallel: none
 
 steps:
 - task: Maven@3
