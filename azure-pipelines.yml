@@ -8,9 +8,6 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-  name: 'Azure Pipelines'
-  demands: 
-    - msbuild
   parallel: none
 
 steps:
@@ -24,3 +21,4 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+
