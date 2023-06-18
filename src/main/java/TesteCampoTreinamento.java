@@ -17,7 +17,8 @@ import org.openqa.selenium.support.ui.Select;
 public class TesteCampoTreinamento {
 	
 	private ChromeDriver driver;
-
+	private DSL dsl;
+	
 	@Before
 	public void inicializa() {
 		ChromeOptions co = new ChromeOptions();
@@ -25,6 +26,7 @@ public class TesteCampoTreinamento {
 		System.setProperty("webdriver.chrome.driverwhitelistedIps", "C://Users//lucas\\OneDrive//Área de Trabalho//chromedriver.exe");
 		driver = new ChromeDriver(co);
 		driver.get("https://wcaquino.me/selenium/componentes.html");
+		dsl = new DSL(driver);
 	}
 
 	@After
@@ -33,9 +35,10 @@ public class TesteCampoTreinamento {
 	}
 	
 	@Test
-	public void testeTextField() throws InterruptedException{
+	public void testeTextField() {
 		//driver.wait(1000);
-		driver.findElement(By.id("elementosForm:nome")).sendKeys("teste de escrita");
+		dsl.escrever("elementosForm:nome", "teste de escrita");	
+		//driver.findElement(By.id("elementosForm:nome")).sendKeys("teste de escrita");
 		//verifica se o que foi escrito está correto
 		Assert.assertEquals("teste de escrita",driver.findElement(By.id("elementosForm:nome")).getAttribute("value"));
 	}
@@ -190,5 +193,40 @@ public class TesteCampoTreinamento {
 		Assert.assertEquals(":D", alertaPrompt.getText());
 		
 		alertaPrompt.accept();
+	}
+	
+	@Test
+	public void interagirComFrame() {
+		driver.switchTo().frame("frame1");
+		driver.findElement(By.id("frameButton")).click();
+		Alert alert = driver.switchTo().alert();
+		String msg = alert.getText();
+		Assert.assertEquals("Frame OK!",msg);
+		alert.accept();
+		driver.switchTo().defaultContent();
+		driver.findElement(By.id("elementosForm:nome")).sendKeys(msg);
+		
+	}
+	@Test 
+	public void interagirComJanela() {
+		driver.findElement(By.id("buttonPopUpEasy")).click();
+		driver.switchTo().window("Popup");
+		driver.findElement(By.tagName("textarea")).sendKeys("Vai dar certo");
+		driver.close();
+		driver.switchTo().window("");
+		
+	}
+	@Test
+	public void interagirComJanelaSemNome() {
+		String atualPopUp = driver.getWindowHandle();
+		driver.findElement(By.id("buttonPopUpHard")).click();
+		
+		String novoPopUp = driver.getWindowHandle();
+		//System.out.print(driver.getWindowHandle());
+		//System.out.print(driver.getWindowHandles());
+		driver.switchTo().window(novoPopUp);
+		driver.findElement(By.tagName("textarea")).sendKeys("escrevendo em outra janela");
+		driver.switchTo().window(atualPopUp);
+		driver.findElement(By.tagName("textarea")).sendKeys("escrevendo em outra janela");
 	}
 }	
