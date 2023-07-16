@@ -40,23 +40,20 @@ public class TesteCampoTreinamento {
 		dsl.escrever("elementosForm:nome", "teste de escrita");	
 		//driver.findElement(By.id("elementosForm:nome")).sendKeys("teste de escrita");
 		//verifica se o que foi escrito está correto
-		Assert.assertEquals("teste de escrita", dsl.pegarValorDoCampo("elementosForm:nome"));
+		Assert.assertEquals("teste de escrita",driver.findElement(By.id("elementosForm:nome")).getAttribute("value"));
 	}
 
 	@Test
 	public void interagirComTextArea() {
 		//procura o elemento através do id, class, name xpath etc. Escreve um texto no elemento
-		dsl.escrever("elementosForm:sugestoes", "testes\n\nselenium\n\nultimalinha\n\n\nops tem mais uma rsrs");
-		
-		
+		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("testes\n\nselenium\n\nultimalinha\n\n\nops tem mais uma rsrs");
+		//fecha o driver
 	}
 	
 	@Test
 	public void interagirComRadioButton() {
 		//interagindo com o radio button
-		dsl.clicarRadio("elementosForm:sexo:0");
-		
-		
+		driver.findElement(By.id("elementosForm:sexo:0")).click();
 		//verificando se o botão está selecionado verifica se o resultado é true
 		Assert.assertTrue(!driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
 	}
