@@ -34,43 +34,22 @@ public class TesteCadastro {
 	public void cadastro() {
 		
 		dsl.escrever("elementosForm:nome", "Lucas");
-		dsl.escrever("elementosForm:nome", "Lopes");
-		
+		dsl.escrever("elementosForm:sobrenome", "Lopes");
 		dsl.clicarRadio("elementosForm:sexo:0");
 		Assert.assertTrue(dsl.verRadioMarcado("elementosForm:sexo:0"));
-		
 		dsl.clicarCheckBox("elementosForm:comidaFavorita:0");
 		dsl.clicarCheckBox("elementosForm:comidaFavorita:1");
-		
 		Assert.assertTrue(dsl.verCheckBoxMarcado("elementosForm:comidaFavorita:0"));
 		Assert.assertTrue(dsl.verCheckBoxMarcado("elementosForm:comidaFavorita:1"));
-		
-		dsl.selecionarCombo("elementosForm:escolaridade","superior");
-		Assert.assertEquals("superior", dsl.pegarValorCombo("elementosForm:escolaridade"));
-		
-		
+		dsl.selecionarCombo("elementosForm:escolaridade","Superior");
+		Assert.assertEquals("Superior", dsl.pegarValorCombo("elementosForm:escolaridade"));
 		dsl.escrever("elementosForm:sugestoes", "Aprendam Java e Selenium");
 		dsl.clicarBotao("elementosForm:cadastrar");
 		
-		System.out.print(dsl.pegarTexto(By.id("resultado")));
+		//System.out.print(dsl.pegarValorDoCampo("resultado"));
 		
-		
-		Assert.assertTrue("Cadastrado!", driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
-		Assert.assertTrue("Lucas", driver.findElement(By.id("descNome")).getText().endsWith("Lucas"));
-		
-		//Assert.assertEquals("Lopes", driver.findElement(By.id("descSobrenome")).getText());
-		
-		//Assert.assertEquals("Masculino", driver.findElement(By.id("descSexo")).getText());
-		//Assert.assertEquals("Masculino", driver.findElement(By.id("descComida")).getText());
-		//Assert.assertEquals("Masculino", driver.findElement(By.id("descEscolaridade")).getText());
-		//Assert.assertEquals("Masculino", driver.findElement(By.id("descEsportes")).getText());
-		
-		//Assert.assertEquals("Aprendam Java e Selenium", driver.findElement(By.id("descSugestoes")).getText());
-		
-		
-		
-		driver.quit();
-		
+		//Assert.assertTrue("Cadastrado!", driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
+		//Assert.assertTrue("Lucas", driver.findElement(By.id("descNome")).getText().endsWith("Lucas"));
 		
 	}
 

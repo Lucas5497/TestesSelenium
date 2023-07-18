@@ -43,7 +43,7 @@ public class DSL {
 		combo.selectByVisibleText(valor);
 	}
 	
-	public String obterValorCombo(String id) {
+	public String pegarValorCombo(String id) {
 		WebElement elemento = driver.findElement(By.id(id));
 		Select combo = new Select(elemento);
 		return combo.getFirstSelectedOption().getText() ;

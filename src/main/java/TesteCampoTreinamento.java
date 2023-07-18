@@ -69,7 +69,7 @@ public class TesteCampoTreinamento {
 	public void interagirComCombo() {
 		
 		dsl.selecionarCombo("elementosForm:escolaridade", "Mestrado");
-		Assert.assertEquals("Mestrado", dsl.obterValorCombo("elementosForm:escolaridade"));
+		Assert.assertEquals("Mestrado", dsl.pegarValorCombo("elementosForm:escolaridade"));
 	}
 	
 	@Test
