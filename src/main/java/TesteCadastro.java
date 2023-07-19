@@ -1,31 +1,29 @@
-	import org.junit.After;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.Select;
+
 
 public class TesteCadastro {
 	
-	private WebDriver driver;
+	private ChromeDriver driver;
 	private DSL dsl;
 	
 	@Before
-	public void inicializa() {
+	public void inicializar() {
 		ChromeOptions co = new ChromeOptions();
 		co.addArguments("--remote-allow-origins=*");
 		System.setProperty("webdriver.chrome.driverwhitelistedIps", "C://Users//lucas\\OneDrive//Área de Trabalho//chromedriver.exe");
-		ChromeDriver driver = new ChromeDriver(co);
+		driver = new ChromeDriver(co);
 		driver.get("https://wcaquino.me/selenium/componentes.html");
 		dsl = new DSL(driver);
 	}
 	
 	@After
-	public void finaliza() {
+	public void finalizar() {
 		driver.quit();
 	}
 	
@@ -50,7 +48,7 @@ public class TesteCadastro {
 		
 		//Assert.assertTrue("Cadastrado!", driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
 		//Assert.assertTrue("Lucas", driver.findElement(By.id("descNome")).getText().endsWith("Lucas"));
-		
+	
 	}
 
 }
