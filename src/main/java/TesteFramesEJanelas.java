@@ -30,7 +30,7 @@ public class TesteFramesEJanelas {
 	public void deveInteragirComFrames(){
 		dsl.entrarFrame("frame1");
 		dsl.clicarBotao("frameButton");
-		String msg = dsl.alertaObterTextoEAceita();
+		String msg = dsl.alertaObterTextoAceitar();
 		Assert.assertEquals("Frame OK!", msg);
 
 		dsl.sairFrame();

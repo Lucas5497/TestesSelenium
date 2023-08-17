@@ -2,7 +2,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -27,7 +26,6 @@ public class TesteCadastro {
 		driver.quit();
 	}
 	
-	
 	@Test
 	public void cadastro() {
 		
@@ -45,10 +43,8 @@ public class TesteCadastro {
 		dsl.clicarBotao("elementosForm:cadastrar");
 		
 		//System.out.print(dsl.pegarValorDoCampo("resultado"));
-		
 		//Assert.assertTrue("Cadastrado!", driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
 		//Assert.assertTrue("Lucas", driver.findElement(By.id("descNome")).getText().endsWith("Lucas"));
-	
 	}
 
 }

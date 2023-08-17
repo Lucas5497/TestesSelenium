@@ -36,32 +36,28 @@ public class TesteCampoTreinamento {
 	
 	@Test
 	public void testeTextField() {
-		//driver.wait(1000);
+		
 		dsl.escrever("elementosForm:nome", "teste de escrita");	
-		//driver.findElement(By.id("elementosForm:nome")).sendKeys("teste de escrita");
-		//verifica se o que foi escrito está correto
 		Assert.assertEquals("teste de escrita", dsl.pegarValorDoCampo("elementosForm:nome"));
 	}
 
 	@Test
 	public void interagirComTextArea() {
-		//procura o elemento através do id, class, name xpath etc. Escreve um texto no elemento
+		
 		dsl.escrever("elementosForm:sugestoes", "testes\n\nselenium\n\nultimalinha\n\n\nops tem mais uma rsrs");
 	}
 	
 	@Test
 	public void interagirComRadioButton() {
-		//interagindo com o radio button
+		
 		dsl.clicarRadio("elementosForm:sexo:0");
-		//verificando se o botão está selecionado verifica se o resultado é true
 		Assert.assertTrue(dsl.verRadioMarcado("elementosForm:sexo:0"));
 	}
 	
 	@Test
 	public void interagirComCheckBox() {
-		//interagindo com o checkBox
+		
 		dsl.clicarCheckBox("elementosForm:comidaFavorita:0");
-		//verificando se o botão está selecionado verifica se o resultado é true
 		Assert.assertTrue(dsl.verCheckBoxMarcado("elementosForm:comidaFavorita:0"));
 	}
 	
@@ -74,9 +70,8 @@ public class TesteCampoTreinamento {
 	
 	@Test
 	public void verificarValoresDoCombo() {
-		//interagindo com a lista | Inicializando a instãncia do webelement 
+		 
 		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
-		//interagindo com o combo
 		Select combo = new Select(elemento);
 		List<WebElement> options = combo.getOptions();
 		Assert.assertEquals(8, options.size());	
@@ -96,15 +91,11 @@ public class TesteCampoTreinamento {
 		dsl.selecionarCombo("elementosForm:esportes","Natacao");
 		dsl.selecionarCombo("elementosForm:esportes","Futebol");
 		dsl.selecionarCombo("elementosForm:esportes","Corrida");
-		
 		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
 		Select combo = new Select(elemento);
-		 
 		List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
 		Assert.assertEquals(3, allSelectedOptions.size());	
-		
-		combo.deselectByVisibleText("Corrida");
-		
+		combo.deselectByVisibleText("Corrida");	
 		List<WebElement> allSelectedOptions2 = combo.getAllSelectedOptions();
 		Assert.assertEquals(2, allSelectedOptions2.size());
 	}
@@ -126,78 +117,73 @@ public class TesteCampoTreinamento {
 	public void buscarTextosNaPagina() {
 		System.out.print(dsl.pegarTexto(By.tagName("Body")));
 		Assert.assertEquals("Campo de Treinamento",
-				dsl.pegarTexto(By.tagName("h3")));
+		dsl.pegarTexto(By.tagName("h3")));
 		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", 
-				dsl.pegarTexto(By.className("facilAchar")));
+		dsl.pegarTexto(By.className("facilAchar")));
 		
 	}
 	
 	@Test
 	public void interagirComAlert() {	
+		
 		driver.findElement(By.id("Alert")).click();
 		Alert alert = driver.switchTo().alert();
-		
 		String texto = alert.getText();
 		Assert.assertEquals("Alert Simples",texto);
 		alert.accept();
+		
 	}
 	
 	@Test
 	public void interagirComAlertSimples() {
-		driver.findElement(By.id("alert")).click();
-		Alert alert = driver.switchTo().alert();
 		
+		driver.findElement(By.id("alert")).click();
+		Alert alert = driver.switchTo().alert();		
 		String texto = alert.getText();
 		Assert.assertEquals("Alert Simples",texto);
 		alert.accept();
-		
 		driver.findElement(By.id("elementosForm:nome")).sendKeys(texto);
+	
 	}
 	
 	@Test
 	public void interagirAlertConfirm() {
+	
 		driver.findElement(By.id("confirm")).click();
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Confirm Simples", alerta.getText());
 		alerta.accept();
-		
 		Assert.assertEquals("Confirmado", alerta.getText()); 
 		alerta.accept();
+	
 	}
 
 	public void interagirAlertPrompt() {
 		
-		driver.findElement(By.id("prompt")).click();
-		
+		driver.findElement(By.id("prompt")).click();	
 		Alert alertaPrompt = driver.switchTo().alert();
-		
 		Assert.assertEquals("Digite um numero", alertaPrompt.getText());
-		
 		alertaPrompt.sendKeys("12");
-		
 		alertaPrompt.accept();
-		
 		Assert.assertEquals("Era 10? ", alertaPrompt.getText());
-		
 		alertaPrompt.accept();
-		
 		Assert.assertEquals(":D", alertaPrompt.getText());
-		
 		alertaPrompt.accept();
+		
 	}
 	
 	@Test
 	public void interagirComFrame() {
-		driver.switchTo().frame("frame1");
-		driver.findElement(By.id("frameButton")).click();
-		Alert alert = driver.switchTo().alert();
-		String msg = alert.getText();
-		Assert.assertEquals("Frame OK!",msg);
-		alert.accept();
-		driver.switchTo().defaultContent();
-		driver.findElement(By.id("elementosForm:nome")).sendKeys(msg);
 		
+		dsl.entrarFrame("frame1");
+		dsl.clicarBotao("frameButton");
+		String msg = dsl.alertaObterTextoAceitar(); 
+		Assert.assertEquals("Frame OK!",msg);
+		dsl.sairFrame();
+		dsl.escrever("elementosForm:nome", msg);
 	}
+	
+	
 	@Test 
 	public void interagirComJanela() {
 		driver.findElement(By.id("buttonPopUpEasy")).click();
@@ -207,6 +193,7 @@ public class TesteCampoTreinamento {
 		driver.switchTo().window("");
 		
 	}
+	
 	@Test
 	public void interagirComJanelaSemNome() {
 		String atualPopUp = driver.getWindowHandle();
@@ -220,4 +207,12 @@ public class TesteCampoTreinamento {
 		driver.switchTo().window(atualPopUp);
 		driver.findElement(By.tagName("textarea")).sendKeys("escrevendo em outra janela");
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 }	
