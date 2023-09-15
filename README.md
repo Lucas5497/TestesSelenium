@@ -15,13 +15,18 @@ Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 1. Clone este repositório para sua máquina local:
 
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/Lucas5497/TestesSelenium.git
 
    
 2. Navegue até o diretório do projeto:
-
+   
+   ```bash
+   cd TestesSelenium
 
 3. Instale as dependências do Maven:
+   
+   ```bash
+   mvn clean install
 
 
 ## Estrutura do Projeto
