@@ -17,7 +17,6 @@ Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
    ```bash
    git clone https://github.com/Lucas5497/TestesSelenium.git
 
-   
 2. Navegue até o diretório do projeto:
    
    ```bash
@@ -27,8 +26,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
    
    ```bash
    mvn clean install
-
-
+   
 ## Estrutura do Projeto
 
 - `src/test/java`: Contém os arquivos de código-fonte dos testes.
