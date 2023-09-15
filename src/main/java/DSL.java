@@ -15,7 +15,6 @@ public class DSL {
 	
 	
 	/*****  Área e campos de texto ****/
-	
 	public void escrever(By by, String texto) {
 		driver.findElement(by).clear();
 		driver.findElement(by).sendKeys(texto);
@@ -31,9 +30,7 @@ public class DSL {
 		return driver.findElement(By.id(id_campo)).getAttribute("value");
 	}
 	
-	
 	/****** Radio e Check ******/
-	
 	public void clicarRadio(String id) {
 		
 		driver.findElement(By.id(id)).click();	
@@ -55,7 +52,6 @@ public class DSL {
 	}
 	
 	/****** Combo ******/
-	
 	public void selecionarCombo(String id, String valor) {
 		
 		WebElement elemento = driver.findElement(By.id(id)); 
@@ -76,7 +72,6 @@ public class DSL {
 		return combo.getFirstSelectedOption().getText() ;
 	}
 	
-	
 	/****** Botões ******/
 	
 	public void clicarBotao(String id) {
@@ -84,11 +79,13 @@ public class DSL {
 		driver.findElement(By.id(id)).click();
 	}
 	
+	
 	public String obterValueElemento(String id){
 		return driver.findElement(By.id(id)).getAttribute("value");
 	}
 	
 	/****** Link ******/
+	
 	
 	public void clicarLink(String id) {
 		
@@ -97,10 +94,12 @@ public class DSL {
 	
 	/****** Texto *****/
 	
+	
 	public String pegarTexto(By by) {
 		
 		return driver.findElement(by).getText();
 	}
+	
 	
 	public String pegarTexto(String id) {
 		return pegarTexto(By.id(id));
