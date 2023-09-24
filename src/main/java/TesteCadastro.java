@@ -14,7 +14,7 @@ public class TesteCadastro {
 	
 	
 	@Before
-	public void inicializar() {
+	public void inicializar() throws InterruptedException {
 		//ChromeOptions co = new ChromeOptions();
 		//co.addArguments("--remote-allow-origins=*");
 		//System.setProperty("webdriver.chrome.driverwhitelistedIps", "C://Users//lucas\\OneDrive//Área de Trabalho//chromedriver.exe");
@@ -29,6 +29,7 @@ public class TesteCadastro {
 		
 		dsl = new DSL(driver);
 		page = new CampoTreinamentoPage(driver);
+		Thread.sleep(2000);
 	}
 	
 	@After
@@ -37,6 +38,7 @@ public class TesteCadastro {
 	}
 	
 	@Test
+	
 	public void deveValidarCadastroComSucesso() throws InterruptedException {
 		
 		page.setNome("Lucas");

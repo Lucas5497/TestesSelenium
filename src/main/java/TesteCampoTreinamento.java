@@ -7,8 +7,6 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.support.ui.Select;
@@ -18,7 +16,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class TesteCampoTreinamento {
 	
-	private ChromeDriver driver;
+	private EdgeDriver driver;
 	private DSL dsl;
 	
 	
@@ -32,7 +30,7 @@ public class TesteCampoTreinamento {
 		EdgeOptions options = new EdgeOptions();
 		options.addArguments("--remote-allow-origins=*");
 		System.setProperty("webdriver.edge.driverwhitelistedIps", "C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\msedgedriver.exe");
-		EdgeDriver driver = new EdgeDriver(options);
+		driver = new EdgeDriver(options);
 		
 		driver.get("https://wcaquino.me/selenium/componentes.html");
 		dsl = new DSL(driver);
@@ -42,6 +40,7 @@ public class TesteCampoTreinamento {
 	public void finaliza() {
 		driver.quit();
 	}
+	
 	
 	@Test
 	public void testetTextField() {

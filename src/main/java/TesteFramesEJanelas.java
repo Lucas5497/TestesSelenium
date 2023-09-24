@@ -3,21 +3,24 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
 
 public class TesteFramesEJanelas {
 	
-	private WebDriver driver;
+	private EdgeDriver driver;
 	private DSL dsl;
 
 	@Before
 	public void inicializa(){
-		driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 765));
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		
+		EdgeOptions options = new EdgeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		System.setProperty("webdriver.edge.driverwhitelistedIps", "C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\msedgedriver.exe");
+		driver = new EdgeDriver(options);
+		
+		driver.get("https://wcaquino.me/selenium/componentes.html");
 		dsl = new DSL(driver);
 	}
 	
