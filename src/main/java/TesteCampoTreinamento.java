@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -19,20 +20,16 @@ public class TesteCampoTreinamento {
 	private EdgeDriver driver;
 	private DSL dsl;
 	
-	
+	String url = "https://wcaquino.me/selenium/componentes.html";
 	@Before
 	public void inicializa() {
-		//ChromeOptions co = new ChromeOptions();
-		//co.addArguments("--remote-allow-origins=*");
-		//System.setProperty("webdriver.chrome.driverwhitelistedIps", "C://Users//lucas\\OneDrive//Área de Trabalho//chromedriver.exe");
-		//driver = new ChromeDriver(co);
 		
 		EdgeOptions options = new EdgeOptions();
 		options.addArguments("--remote-allow-origins=*");
-		System.setProperty("webdriver.edge.driverwhitelistedIps", "C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\msedgedriver.exe");
+		System.setProperty("webdriver.edge.driverwhitelistedIps", "C:\\Users\\Acer\\Desktop\\msedgedriver.exe");
 		driver = new EdgeDriver(options);
-		
-		driver.get("https://wcaquino.me/selenium/componentes.html");
+		driver.manage().window().setSize(new Dimension(1366, 768));
+		driver.get(url);
 		dsl = new DSL(driver);
 	}
 
