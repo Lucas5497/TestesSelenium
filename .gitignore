@@ -1,1 +1,11 @@
+# Arquivos temporários
+*.tmp
+
+# Diretório de compilação
 /target/
+
+# Arquivos de configuração
+config.properties
+
+# Ignorar todos os arquivos com uma determinada extensão
+*.log
