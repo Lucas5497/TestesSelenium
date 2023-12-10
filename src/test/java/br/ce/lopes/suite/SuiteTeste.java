@@ -1,6 +1,13 @@
+package br.ce.lopes.suite;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
+
+import br.ce.lopes.test.TesteAlertPrompt;
+import br.ce.lopes.test.TesteCadastro;
+import br.ce.lopes.test.TesteCampoTreinamento;
+import br.ce.lopes.test.TesteDeEspera;
+import br.ce.lopes.test.TesteFramesEJanelas;
 
 @RunWith(Suite.class)
 @SuiteClasses({

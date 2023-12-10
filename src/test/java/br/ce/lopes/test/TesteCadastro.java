@@ -1,3 +1,4 @@
+package br.ce.lopes.test;
 import static br.ce.lopes.core.DriverFactory.getDriver;
 import static br.ce.lopes.core.DriverFactory.killDriver;
 
@@ -7,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.ce.lopes.core.DSL;
+import br.ce.lopes.page.CampoTreinamentoPage;
 
 
 public class TesteCadastro {

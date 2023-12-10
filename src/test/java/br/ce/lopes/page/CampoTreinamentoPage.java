@@ -1,3 +1,4 @@
+package br.ce.lopes.page;
 import br.ce.lopes.core.DSL;
 
 public class CampoTreinamentoPage {

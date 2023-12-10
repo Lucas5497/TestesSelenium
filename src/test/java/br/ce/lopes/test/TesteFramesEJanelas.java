@@ -1,3 +1,4 @@
+package br.ce.lopes.test;
 import static br.ce.lopes.core.DriverFactory.getDriver;
 import static br.ce.lopes.core.DriverFactory.killDriver;
 
