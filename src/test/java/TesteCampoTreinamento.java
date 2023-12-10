@@ -1,16 +1,19 @@
+import static br.ce.lopes.core.DriverFactory.getDriver;
+import static br.ce.lopes.core.DriverFactory.killDriver;
+
 import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.support.ui.Select;
+
+import br.ce.lopes.core.DSL;
 
 
 
@@ -22,20 +25,17 @@ public class TesteCampoTreinamento {
 	
 	String url = "https://wcaquino.me/selenium/componentes.html";
 	@Before
-	public void inicializa() {
-		
-		EdgeOptions options = new EdgeOptions();
-		options.addArguments("--remote-allow-origins=*");
-		System.setProperty("webdriver.edge.driverwhitelistedIps", "C:\\Users\\Acer\\Desktop\\msedgedriver.exe");
-		driver = new EdgeDriver(options);
-		driver.manage().window().setSize(new Dimension(1366, 768));
-		driver.get(url);
-		dsl = new DSL(driver);
+	public void inicializa() throws InterruptedException {
+		getDriver().get(url);
+		Thread.sleep(1000);
+		dsl = new DSL();
 	}
 
 	@After
-	public void finaliza() {
-		driver.quit();
+	public void finaliza() throws InterruptedException {
+		Thread.sleep(1000);
+		killDriver();
+		
 	}
 	
 	
@@ -128,55 +128,7 @@ public class TesteCampoTreinamento {
 		
 	}
 	
-	@Test
-	public void interagirComAlert() {	
 		
-		driver.findElement(By.id("Alert")).click();
-		Alert alert = driver.switchTo().alert();
-		String texto = alert.getText();
-		Assert.assertEquals("Alert Simples",texto);
-		alert.accept();
-		
-	}
-	
-	@Test
-	public void interagirComAlertSimples() {
-		
-		driver.findElement(By.id("alert")).click();
-		Alert alert = driver.switchTo().alert();		
-		String texto = alert.getText();
-		Assert.assertEquals("Alert Simples",texto);
-		alert.accept();
-		driver.findElement(By.id("elementosForm:nome")).sendKeys(texto);
-	
-	}
-	
-	@Test
-	public void interagirAlertConfirm() {
-	
-		driver.findElement(By.id("confirm")).click();
-		Alert alerta = driver.switchTo().alert();
-		Assert.assertEquals("Confirm Simples", alerta.getText());
-		alerta.accept();
-		Assert.assertEquals("Confirmado", alerta.getText()); 
-		alerta.accept();
-	
-	}
-
-	public void interagirAlertPrompt() {
-		
-		driver.findElement(By.id("prompt")).click();	
-		Alert alertaPrompt = driver.switchTo().alert();
-		Assert.assertEquals("Digite um numero", alertaPrompt.getText());
-		alertaPrompt.sendKeys("12");
-		alertaPrompt.accept();
-		Assert.assertEquals("Era 10? ", alertaPrompt.getText());
-		alertaPrompt.accept();
-		Assert.assertEquals(":D", alertaPrompt.getText());
-		alertaPrompt.accept();
-		
-	}
-	
 	@Test
 	public void interagirComFrame() {
 		
@@ -213,6 +165,11 @@ public class TesteCampoTreinamento {
 		driver.findElement(By.tagName("textarea")).sendKeys("escrevendo em outra janela");
 	}
 	
+	@Test
+	public void testJavaScript() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("alert('Testando JavaScript via Selenium')");
+	}
 	
 	
 	

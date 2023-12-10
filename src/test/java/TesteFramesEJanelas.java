@@ -1,35 +1,36 @@
+import static br.ce.lopes.core.DriverFactory.getDriver;
+import static br.ce.lopes.core.DriverFactory.killDriver;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.WebElement;
+
+import br.ce.lopes.core.DSL;
 
 
 public class TesteFramesEJanelas {
 	
-	private EdgeDriver driver;
+	
 	private DSL dsl;
 	
 	String url = "https://wcaquino.me/selenium/componentes.html";
 	
 	@Before
-	public void inicializa(){
+	public void inicializa() throws InterruptedException{
 		
-		EdgeOptions options = new EdgeOptions();
-		options.addArguments("--remote-allow-origins=*");
-		System.setProperty("webdriver.edge.driverwhitelistedIps", "C:\\Users\\Acer\\Desktop\\msedgedriver.exe");
-		driver = new EdgeDriver(options);
-		driver.manage().window().setSize(new Dimension(1366, 768));
-		driver.get(url);
-		dsl = new DSL(driver);
+		
+		getDriver().get(url);
+		Thread.sleep(1000);
+		dsl = new DSL();
 	}
 	
 	@After
-	public void finaliza(){
-		driver.quit();
+	public void finaliza() throws InterruptedException{
+		Thread.sleep(2000);
+		killDriver();
 	}
 
 	@Test
@@ -48,7 +49,7 @@ public class TesteFramesEJanelas {
 		dsl.clicarBotao("buttonPopUpEasy");
 		dsl.trocarJanela("Popup");
 		dsl.escrever(By.tagName("textarea"), "Deu certo?");
-		driver.close();
+		getDriver().close();
 		dsl.trocarJanela("");
 		dsl.escrever(By.tagName("textarea"), "e agora?");
 	}
@@ -56,11 +57,26 @@ public class TesteFramesEJanelas {
 	@Test
 	public void deveInteragirComJanelasSemTitulo(){
 		dsl.clicarBotao("buttonPopUpHard");
-		System.out.println(driver.getWindowHandle());
-		System.out.println(driver.getWindowHandles());
-		dsl.trocarJanela((String) driver.getWindowHandles().toArray()[1]);
+		System.out.println(getDriver().getWindowHandle());
+		System.out.println(getDriver().getWindowHandles());
+		dsl.trocarJanela((String) getDriver().getWindowHandles().toArray()[1]);
 		dsl.escrever(By.tagName("textarea"), "Deu certo?");
-		dsl.trocarJanela((String) driver.getWindowHandles().toArray()[0]);
+		dsl.trocarJanela((String) getDriver().getWindowHandles().toArray()[0]);
 		dsl.escrever(By.tagName("textarea"), "e agora?");
 	}
+	
+	@Test
+	public void deveInteragirComFrameEscondido() throws InterruptedException {
+		
+		
+		WebElement frame = getDriver().findElement(By.id("frame2"));
+		dsl.executarJavaScript("window.scrollBy(0,arguments[0])", frame.getLocation().y);
+		dsl.entrarFrame("frame2");
+		dsl.clicarBotao("frameButton");
+		String msg = dsl.alertaObterTextoAceitar();
+		Assert.assertEquals("Frame OK!", msg);
+	}
+	
+	
+	
 }

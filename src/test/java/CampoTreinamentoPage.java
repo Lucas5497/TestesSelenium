@@ -1,12 +1,12 @@
-import org.openqa.selenium.edge.EdgeDriver;
+import br.ce.lopes.core.DSL;
 
 public class CampoTreinamentoPage {
 
 	private DSL dsl;
 			
 			
-	public CampoTreinamentoPage(EdgeDriver driver) {
-		dsl = new DSL(driver);
+	public CampoTreinamentoPage() {
+		dsl = new DSL();
 		
 	}
 	

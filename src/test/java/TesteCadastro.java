@@ -1,15 +1,16 @@
+import static br.ce.lopes.core.DriverFactory.getDriver;
+import static br.ce.lopes.core.DriverFactory.killDriver;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+
+import br.ce.lopes.core.DSL;
 
 
 public class TesteCadastro {
 	
-	private EdgeDriver driver;
 	private DSL dsl;
 	private CampoTreinamentoPage page;
 	
@@ -21,20 +22,15 @@ public class TesteCadastro {
 		//System.setProperty("webdriver.chrome.driverwhitelistedIps", "C://Users//lucas\\OneDrive//Área de Trabalho//chromedriver.exe");
 		//driver = new ChromeDriver(co);
 		
-		EdgeOptions options = new EdgeOptions();
-		options.addArguments("--remote-allow-origins=*");
-		System.setProperty("webdriver.edge.driverwhitelistedIps", "C:\\Users\\Acer\\Desktop\\msedgedriver.exe");
-		driver = new EdgeDriver(options);
-		driver.manage().window().setSize(new Dimension(1366, 768));
-		driver.get(url);
-		dsl = new DSL(driver);
-		page = new CampoTreinamentoPage(driver);
+		getDriver().get(url);
+		dsl = new DSL();
+		page = new CampoTreinamentoPage();
 		Thread.sleep(2000);
 	}
 	
 	@After
 	public void finalizar() {
-		driver.quit();
+		killDriver();
 	}
 	
 	@Test
