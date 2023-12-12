@@ -1,17 +1,9 @@
 package br.ce.lopes.page;
-import br.ce.lopes.core.DSL;
 
-public class CampoTreinamentoPage {
+import br.ce.lopes.core.BasePage;
 
-	private DSL dsl;
-			
-			
-	public CampoTreinamentoPage() {
-		dsl = new DSL();
-		
-	}
-	
-	
+public class CampoTreinamentoPage extends BasePage{
+
 	String nomeElement = "elementosForm:nome";
 	
 	
