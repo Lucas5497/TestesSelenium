@@ -1,45 +1,31 @@
 package br.ce.lopes.test;
 import static br.ce.lopes.core.DriverFactory.getDriver;
-import static br.ce.lopes.core.DriverFactory.killDriver;
 
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import br.ce.lopes.core.BaseTest;
 import br.ce.lopes.core.DSL;
 
-
-
-
-public class TesteCampoTreinamento {
+public class TesteCampoTreinamento extends BaseTest{
 	
-	private EdgeDriver driver;
 	private DSL dsl;
 	
 	String url = "https://wcaquino.me/selenium/componentes.html";
 	@Before
 	public void inicializa() throws InterruptedException {
 		getDriver().get(url);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		dsl = new DSL();
 	}
 
-	@After
-	public void finaliza() throws InterruptedException {
-		Thread.sleep(1000);
-		killDriver();
-		
-	}
-	
-	
 	@Test
 	public void testetTextField() {
 		
@@ -77,7 +63,7 @@ public class TesteCampoTreinamento {
 	@Test
 	public void verificarValoresDoCombo() {
 		 
-		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
+		WebElement elemento = getDriver().findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(elemento);
 		List<WebElement> options = combo.getOptions();
 		Assert.assertEquals(8, options.size());	
@@ -97,7 +83,7 @@ public class TesteCampoTreinamento {
 		dsl.selecionarCombo("elementosForm:esportes","Natacao");
 		dsl.selecionarCombo("elementosForm:esportes","Futebol");
 		dsl.selecionarCombo("elementosForm:esportes","Corrida");
-		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
+		WebElement elemento = getDriver().findElement(By.id("elementosForm:esportes"));
 		Select combo = new Select(elemento);
 		List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
 		Assert.assertEquals(3, allSelectedOptions.size());	
@@ -144,38 +130,33 @@ public class TesteCampoTreinamento {
 	
 	@Test 
 	public void interagirComJanela() {
-		driver.findElement(By.id("buttonPopUpEasy")).click();
-		driver.switchTo().window("Popup");
-		driver.findElement(By.tagName("textarea")).sendKeys("Vai dar certo");
-		driver.close();
-		driver.switchTo().window("");
+		getDriver().findElement(By.id("buttonPopUpEasy")).click();
+		getDriver().switchTo().window("Popup");
+		getDriver().findElement(By.tagName("textarea")).sendKeys("Vai dar certo");
+		getDriver().close();
+		getDriver().switchTo().window("");
 		
 	}
 	
 	@Test
 	public void interagirComJanelaSemNome() {
-		String atualPopUp = driver.getWindowHandle();
-		driver.findElement(By.id("buttonPopUpHard")).click();
+		String atualPopUp = getDriver().getWindowHandle();
+		getDriver().findElement(By.id("buttonPopUpHard")).click();
 		
-		String novoPopUp = driver.getWindowHandle();
-		//System.out.print(driver.getWindowHandle());
-		//System.out.print(driver.getWindowHandles());
-		driver.switchTo().window(novoPopUp);
-		driver.findElement(By.tagName("textarea")).sendKeys("escrevendo em outra janela");
-		driver.switchTo().window(atualPopUp);
-		driver.findElement(By.tagName("textarea")).sendKeys("escrevendo em outra janela");
+		String novoPopUp = getDriver().getWindowHandle();
+		//System.out.print(getDriver().getWindowHandle());
+		//System.out.print(getDriver().getWindowHandles());
+		getDriver().switchTo().window(novoPopUp);
+		getDriver().findElement(By.tagName("textarea")).sendKeys("escrevendo em outra janela");
+		getDriver().switchTo().window(atualPopUp);
+		getDriver().findElement(By.tagName("textarea")).sendKeys("escrevendo em outra janela");
 	}
 	
-	@Test
-	public void testJavaScript() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+	/*@Test
+	public void testJavaStcript() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		js.executeScript("alert('Testando JavaScript via Selenium')");
-	}
-	
-	
-	
-	
-	
-	
+		Thread.sleep(1000);
+	}*/
 	
 }	

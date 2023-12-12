@@ -7,11 +7,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.ce.lopes.core.BaseTest;
 import br.ce.lopes.core.DSL;
 import br.ce.lopes.page.CampoTreinamentoPage;
 
 
-public class TesteCadastro {
+public class TesteCadastro extends BaseTest {
 	
 	private DSL dsl;
 	private CampoTreinamentoPage page;
@@ -29,12 +30,7 @@ public class TesteCadastro {
 		page = new CampoTreinamentoPage();
 		Thread.sleep(2000);
 	}
-	
-	@After
-	public void finalizar() {
-		killDriver();
-	}
-	
+		
 	@Test
 	
 	public void deveValidarCadastroComSucesso() throws InterruptedException {

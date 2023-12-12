@@ -8,9 +8,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.ce.lopes.core.BaseTest;
 import br.ce.lopes.core.DSL;
 
-public class TesteDeEspera{
+public class TesteDeEspera extends BaseTest{
 	
 	private DSL dsl;
 	
@@ -22,12 +23,6 @@ public class TesteDeEspera{
 		getDriver().get(url);
 		Thread.sleep(1000);
 		dsl = new DSL();
-	}
-	
-	@After
-	public void finaliza() throws InterruptedException{
-		Thread.sleep(1000);
-		killDriver();
 	}
 	
 	@Test

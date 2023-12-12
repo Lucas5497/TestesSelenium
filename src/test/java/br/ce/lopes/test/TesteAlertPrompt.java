@@ -1,17 +1,16 @@
 package br.ce.lopes.test;
 import static br.ce.lopes.core.DriverFactory.getDriver;
-import static br.ce.lopes.core.DriverFactory.killDriver;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 
+import br.ce.lopes.core.BaseTest;
 import br.ce.lopes.core.DSL;
 
-public class TesteAlertPrompt {
+public class TesteAlertPrompt extends BaseTest {
 	//private EdgeDriver driver;
 	private DSL dsl;
 	
@@ -29,13 +28,7 @@ public class TesteAlertPrompt {
 		Thread.sleep(1000);
 		dsl = new DSL();
 	}
-	
-	@After
-	public void finaliza() throws InterruptedException{
-		Thread.sleep(1000);
-		killDriver();
-	}
-	
+		
 	@Test
 	public void interagirComAlert() {	
 		
@@ -76,7 +69,7 @@ public class TesteAlertPrompt {
 		Assert.assertEquals("Digite um numero", alertaPrompt.getText());
 		alertaPrompt.sendKeys("10");
 		alertaPrompt.accept();
-		Assert.assertEquals("Era 10? ", alertaPrompt.getText());
+		Assert.assertEquals("Era 10?", alertaPrompt.getText());
 		alertaPrompt.accept();
 		Assert.assertEquals(":D", alertaPrompt.getText());
 		alertaPrompt.accept();

@@ -9,10 +9,11 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import br.ce.lopes.core.BaseTest;
 import br.ce.lopes.core.DSL;
 
 
-public class TesteFramesEJanelas {
+public class TesteFramesEJanelas extends BaseTest{
 	
 	
 	private DSL dsl;
@@ -22,18 +23,11 @@ public class TesteFramesEJanelas {
 	@Before
 	public void inicializa() throws InterruptedException{
 		
-		
 		getDriver().get(url);
 		Thread.sleep(1000);
 		dsl = new DSL();
 	}
 	
-	@After
-	public void finaliza() throws InterruptedException{
-		Thread.sleep(2000);
-		killDriver();
-	}
-
 	@Test
 	public void deveInteragirComFrames(){
 		dsl.entrarFrame("frame1");
