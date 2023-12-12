@@ -5,8 +5,6 @@ public class BasePage {
 	protected DSL dsl;
 	
 	public BasePage() {
-		dsl = new DSL();
-		
+		dsl = new DSL();	
 	}
-	
 }

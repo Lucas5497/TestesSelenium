@@ -50,5 +50,4 @@ public class TesteDeEspera extends BaseTest{
 		//wait.until(ExpectedConditions.presenceOfElementLocated(By.id("novoCampo")));
 		dsl.escrever("novoCampo", "Deu certo?");	
 	}
-	
 }

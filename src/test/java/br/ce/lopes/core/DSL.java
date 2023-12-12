@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.Select;
 
 public class DSL {
 	
-	
 	/*****  Área e campos de texto ****/
 	public void escrever(By by, String texto) {
 		getDriver().findElement(by).clear();
@@ -69,41 +68,32 @@ public class DSL {
 	}
 	
 	/****** Botões ******/
-	
 	public void clicarBotao(String id) {
 		
 		getDriver().findElement(By.id(id)).click();
 	}
-	
 	
 	public String obterValueElemento(String id){
 		return getDriver().findElement(By.id(id)).getAttribute("value");
 	}
 	
 	/****** Link ******/
-	
-	
 	public void clicarLink(String id) {
 		
 		getDriver().findElement(By.linkText(id)).click();
 	}
 	
 	/****** Texto *****/
-	
-	
 	public String pegarTexto(By by) {
 		
 		return getDriver().findElement(by).getText();
 	}
 	
-	
 	public String pegarTexto(String id) {
 		return pegarTexto(By.id(id));
 	}
 	
-	
 	/****** Alerts ******/
-	
 	public String alertaObterTexto() {
 		Alert alert = getDriver().switchTo().alert();
 		String valor = alert.getText();
@@ -128,7 +118,6 @@ public class DSL {
 	}
 
 	/***** Frames e Janelas *******/
-	
 	public void entrarFrame(String id_frame) {
 		
 		getDriver().switchTo().frame(id_frame);
@@ -144,10 +133,8 @@ public class DSL {
 	}
 	/************ JS 
 	 * @return ************/
-	
 	public Object executarJavaScript(String cmd, Object...param) {
 		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		return js.executeScript(cmd, param);
-		
 	}
 }

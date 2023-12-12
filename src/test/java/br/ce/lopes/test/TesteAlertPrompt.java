@@ -19,11 +19,6 @@ public class TesteAlertPrompt extends BaseTest {
 	@Before
 	public void inicializa() throws InterruptedException{
 		
-		//EdgeOptions options = new EdgeOptions();
-		//options.addArguments("--remote-allow-origins=*");
-		//DriverFactory.getDriver().get(System.setProperty("webgetDriver().edge.driverwhitelistedIps", "C:\\Users\\Acer\\Desktop\\msedgegetDriver().exe"));
-		//driver = new EdgeDriver(options);
-		//getDriver().manage().window().setSize(new Dimension(1366, 768));
 		getDriver().get(url);
 		Thread.sleep(1000);
 		dsl = new DSL();
@@ -73,5 +68,6 @@ public class TesteAlertPrompt extends BaseTest {
 		alertaPrompt.accept();
 		Assert.assertEquals(":D", alertaPrompt.getText());
 		alertaPrompt.accept();
+		
 	}
 }

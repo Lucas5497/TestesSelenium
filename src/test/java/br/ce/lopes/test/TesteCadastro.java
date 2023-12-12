@@ -11,7 +11,6 @@ import br.ce.lopes.core.BaseTest;
 import br.ce.lopes.core.DSL;
 import br.ce.lopes.page.CampoTreinamentoPage;
 
-
 public class TesteCadastro extends BaseTest {
 	
 	private DSL dsl;
@@ -20,10 +19,6 @@ public class TesteCadastro extends BaseTest {
 	String url = "https://wcaquino.me/selenium/componentes.html";
 	@Before
 	public void inicializar() throws InterruptedException {
-		//ChromeOptions co = new ChromeOptions();
-		//co.addArguments("--remote-allow-origins=*");
-		//System.setProperty("webdriver.chrome.driverwhitelistedIps", "C://Users//lucas\\OneDrive//Área de Trabalho//chromedriver.exe");
-		//driver = new ChromeDriver(co);
 		
 		getDriver().get(url);
 		dsl = new DSL();
@@ -31,8 +26,7 @@ public class TesteCadastro extends BaseTest {
 		Thread.sleep(2000);
 	}
 		
-	@Test
-	
+	@Test	
 	public void deveValidarCadastroComSucesso() throws InterruptedException {
 		
 		page.setNome("Lucas");
@@ -45,7 +39,7 @@ public class TesteCadastro extends BaseTest {
 		Thread.sleep(1000);
 		page.cadastrar();
 		Thread.sleep(10000);
-		
+
 		Assert.assertTrue(page.obterResultadoCadastro().startsWith("Cadastrado!"));
 		Assert.assertTrue(page.obterNomeCadastrado().endsWith("Lucas"));
 		Assert.assertTrue(page.obterSobrenomeCadastrado().endsWith("Lopes"));
@@ -84,7 +78,6 @@ public class TesteCadastro extends BaseTest {
 		page.setEsporte("Futebol");
 		page.setSugestoes("Aprenda java e selenium");
 		page.cadastrar();
-		
 		Assert.assertEquals("Tem certeza que voce eh vegetariano?", dsl.alertaObterTextoAceitar());
 	
 	}

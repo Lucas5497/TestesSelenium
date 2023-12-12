@@ -15,7 +15,6 @@ import br.ce.lopes.core.DSL;
 
 public class TesteFramesEJanelas extends BaseTest{
 	
-	
 	private DSL dsl;
 	
 	String url = "https://wcaquino.me/selenium/componentes.html";
@@ -30,6 +29,7 @@ public class TesteFramesEJanelas extends BaseTest{
 	
 	@Test
 	public void deveInteragirComFrames(){
+		
 		dsl.entrarFrame("frame1");
 		dsl.clicarBotao("frameButton");
 		String msg = dsl.alertaObterTextoAceitar();
@@ -62,8 +62,7 @@ public class TesteFramesEJanelas extends BaseTest{
 	
 	@Test
 	public void deveInteragirComFrameEscondido() throws InterruptedException {
-		
-		
+
 		WebElement frame = getDriver().findElement(By.id("frame2"));
 		dsl.executarJavaScript("window.scrollBy(0,arguments[0])", frame.getLocation().y);
 		dsl.entrarFrame("frame2");
@@ -71,7 +70,4 @@ public class TesteFramesEJanelas extends BaseTest{
 		String msg = dsl.alertaObterTextoAceitar();
 		Assert.assertEquals("Frame OK!", msg);
 	}
-	
-	
-	
 }

@@ -115,7 +115,6 @@ public class TesteCampoTreinamento extends BaseTest{
 		
 	}
 	
-		
 	@Test
 	public void interagirComFrame() {
 		
@@ -126,7 +125,6 @@ public class TesteCampoTreinamento extends BaseTest{
 		dsl.sairFrame();
 		dsl.escrever("elementosForm:nome", msg);
 	}
-	
 	
 	@Test 
 	public void interagirComJanela() {
@@ -158,5 +156,4 @@ public class TesteCampoTreinamento extends BaseTest{
 		js.executeScript("alert('Testando JavaScript via Selenium')");
 		Thread.sleep(1000);
 	}*/
-	
 }	
