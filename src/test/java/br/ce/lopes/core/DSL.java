@@ -28,6 +28,7 @@ public class DSL {
 	/****** Radio e Check ******/
 	public void clicarRadio(String id) {
 		
+		
 		getDriver().findElement(By.id(id)).click();	
 	}
 	
