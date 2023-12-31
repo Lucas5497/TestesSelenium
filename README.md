@@ -6,9 +6,9 @@ Este é um projeto de automação de testes usando Java, Selenium WebDriver, JUn
 
 Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
-- Java JDK (versão recomendada)
+- Java JDK (21)
 - Maven
-- WebDriver (por exemplo, ChromeDriver para testes no Google Chrome)
+- WebDriver (EdgeDriver)
 
 ## Configuração do Projeto
 
@@ -30,18 +30,12 @@ Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 ## Estrutura do Projeto
 
 - `src/test/java`: Contém os arquivos de código-fonte dos testes.
-- `src/test/resources`: Contém os recursos de teste, como arquivos de dados e configurações.
-- `src/main/java`: Pode conter classes de utilitário ou outros componentes relevantes.
-- `target`: É onde os resultados dos testes e relatórios são gerados após a execução dos testes.
 
 ## Executando os Testes
 
 Você pode executar os testes a partir da linha de comando usando o Maven:
 
-
-## Relatórios
-
-Após a execução dos testes, os relatórios são gerados na pasta `target/site/serenity`. Você pode visualizar os relatórios HTML no navegador.
+Não se esqueça de ter o EdgeDriver e o Edge instalados(O EdgeDriver precisa estar no PATH)
 
 ## Contribuição
 
